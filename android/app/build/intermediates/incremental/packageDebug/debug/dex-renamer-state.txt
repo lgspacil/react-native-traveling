@@ -1,0 +1,4 @@
+#Sat Jun 09 12:51:24 PDT 2018
+base.0=/Users/lucasspacil/Desktop/rn-course/android/app/build/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex
