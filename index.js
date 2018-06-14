@@ -6,6 +6,7 @@ import App from './App';
 
 const store = configureStore();
 
+
 // Needed to make this a function since it was expecting one
 const RNRedux = () =>(
     <Provider store={store}>
