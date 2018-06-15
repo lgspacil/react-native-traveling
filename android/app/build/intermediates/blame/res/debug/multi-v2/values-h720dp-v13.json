@@ -4,15 +4,8 @@
             "outputFile": "/Users/lucasspacil/Desktop/rn-course/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-h720dp-v13/values-h720dp-v13.xml",
             "map": [
                 {
-                    "source": "/Users/lucasspacil/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/58c205b0a7cd1a336b60075e124c392f/res/values-h720dp/values-h720dp.xml",
+                    "source": "/Users/lucasspacil/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/caa4e41b5ecf5708cf41b8a1bdc06efa/res/values-h720dp-v13/values-h720dp-v13.xml",
                     "from": {
-                        "startLines": "4",
-                        "startColumns": "4",
-                        "startOffsets": "283",
-                        "endColumns": "66",
-                        "endOffsets": "345"
-                    },
-                    "to": {
                         "startLines": "2",
                         "startColumns": "4",
                         "startOffsets": "55",

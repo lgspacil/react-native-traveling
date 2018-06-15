@@ -4,15 +4,8 @@
             "outputFile": "/Users/lucasspacil/Desktop/rn-course/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-port/values-port.xml",
             "map": [
                 {
-                    "source": "/Users/lucasspacil/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/58c205b0a7cd1a336b60075e124c392f/res/values-port/values-port.xml",
+                    "source": "/Users/lucasspacil/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/caa4e41b5ecf5708cf41b8a1bdc06efa/res/values-port/values-port.xml",
                     "from": {
-                        "startLines": "4",
-                        "startColumns": "4",
-                        "startOffsets": "280",
-                        "endColumns": "55",
-                        "endOffsets": "331"
-                    },
-                    "to": {
                         "startLines": "2",
                         "startColumns": "4",
                         "startOffsets": "55",

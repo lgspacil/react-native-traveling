@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Jun 13 23:01:11 PDT 2018
+#Thu Jun 14 18:32:48 PDT 2018
 17.baseType=DIRECTORY
 4.path=lib/x86/libprivatedata.so
 25.base=/Users/lucasspacil/Desktop/rn-course/android/app/build/intermediates/transforms/mergeJniLibs/debug/0
