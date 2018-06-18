@@ -1,1 +1,2 @@
-export {addPlace, deletePlace, deseletePlace, selectPlace} from './places';
+//Bundle all exports
+export {addPlace, deletePlace} from './places';

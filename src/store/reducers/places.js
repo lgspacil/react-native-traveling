@@ -1,9 +1,8 @@
-import { ADD_PLACE, DELETE_PLACE, SELECT_PLACE, DESELECT_PLACE } from '../actions/actionTypes';
+import { ADD_PLACE, DELETE_PLACE } from '../actions/actionTypes';
 //accept the messages from the action and change state
 
 const initalState = {
-    places: [],
-    selectedPlace: null
+    places: []
 };
 
 // in the reducer we can find out wich action occurred 
@@ -27,21 +26,7 @@ const reducer = (state = initalState, action) => {
                 places: state.places.filter(place => {
                     // if true, will be added to the array
                     return place.key !== state.selectedPlace.key;
-                }),
-                selectedPlace: null
-
-            }
-        case SELECT_PLACE:
-            return {
-                ...state,
-                selectedPlace: state.places.find(place => {
-                    return place.key === action.placeKey;
                 })
-            }
-        case DESELECT_PLACE: 
-            return {
-                ...state,
-                selectedPlace: null
             }
         default:
             return state;
