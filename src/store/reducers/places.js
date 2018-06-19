@@ -25,7 +25,7 @@ const reducer = (state = initalState, action) => {
                 ...state,
                 places: state.places.filter(place => {
                     // if true, will be added to the array
-                    return place.key !== state.selectedPlace.key;
+                    return place.key !== action.placeKey;
                 })
             }
         default:
