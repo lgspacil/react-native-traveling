@@ -41,6 +41,7 @@ class FindPlaceScreen extends Component{
     }
 }
 
+// want to grab the state values
 const mapStateToProps = state => {
     return {
         places: state.places.places
