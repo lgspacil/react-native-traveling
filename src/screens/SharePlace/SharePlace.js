@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, ScrollView, Image } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, ScrollView, Image, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import { addPlace } from '../../store/actions/index';
 import PlaceInput from '../../components/PlaceInput/PlaceInput';
@@ -49,22 +49,24 @@ class SharePlaceScreen extends Component {
 
     render() {
         return (
-            <ScrollView>
-                <View style={styles.container}>
-                    <MainText>
-                        <HeadingText>Share a Place with us!</HeadingText>
-                    </MainText>
-                    <PickImage />
-                    <PickLocation />
-                    <PlaceInput 
-                        placeName={this.state.placeName} 
-                        onChangeText={this.placeNameChangedHandler}
-                    />
-                    <View style={styles.button}>
-                        <Button title="Share the Place!" onPress={this.placeAddedHandler}/>
+                <ScrollView>
+                    <View style={styles.container}>
+                        <MainText>
+                            <HeadingText>Share a Place with us!</HeadingText>
+                        </MainText>
+                        <PickImage />
+                        <PickLocation />
+                        <PlaceInput 
+                            placeName={this.state.placeName} 
+                            onChangeText={this.placeNameChangedHandler}
+                        />
+                        <KeyboardAvoidingView style={styles.container} behavior="padding">
+                            <View style={styles.button}>
+                                <Button title="Share the Place!" onPress={this.placeAddedHandler}/>
+                            </View>
+                        </KeyboardAvoidingView>
                     </View>
-                </View>
-            </ScrollView>
+                </ScrollView>
         )
     }
 }
