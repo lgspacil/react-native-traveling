@@ -17,7 +17,8 @@ const reducer = (state = initalState, action) => {
                     name: action.placeName,
                     image: {
                         uri: "http://fotofrenzy.com.au/wp-content/uploads/2017/06/Wave_Eye-1024x683.jpg"
-                    }
+                    },
+                    location: action.location
                 })
             };
         case DELETE_PLACE:
