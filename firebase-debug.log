@@ -1,0 +1,140 @@
+[debug] [2018-07-04T14:54:09.247Z] ----------------------------------------------------------------------
+[debug] [2018-07-04T14:54:09.250Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2018-07-04T14:54:09.251Z] CLI Version:   3.19.3
+[debug] [2018-07-04T14:54:09.251Z] Platform:      darwin
+[debug] [2018-07-04T14:54:09.251Z] Node Version:  v6.11.3
+[debug] [2018-07-04T14:54:09.255Z] Time:          Wed Jul 04 2018 07:54:09 GMT-0700 (PDT)
+[debug] [2018-07-04T14:54:09.255Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-07-04T14:54:09.280Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-07-04T14:54:09.280Z] > authorizing via signed-in user
+[debug] [2018-07-04T14:54:09.283Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-07-04T14:54:09.284Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/6exT_ljAKwvHAweo8A7yyvqFw8gyhnrMIqYYcG1vk7A',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Wed Jul 04 2018 07:54:09 GMT-0700 (PDT)
+[debug] [2018-07-04T14:54:09.602Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-04T14:54:09.608Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/react-native-myt-1530315514387  
+  
+ Wed Jul 04 2018 07:54:09 GMT-0700 (PDT)
+[debug] [2018-07-04T14:54:10.172Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-04T14:54:10.174Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/react-native-myt-1530315514387/tokens  
+  
+ Wed Jul 04 2018 07:54:10 GMT-0700 (PDT)
+[debug] [2018-07-04T14:54:10.597Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'react-native-myt-1530315514387'...
+[info] 
+[info] i  deploying functions
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] ✔  functions: Finished running predeploy script.
+[debug] [2018-07-04T14:54:17.145Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase serve --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^1.7.0",
+    "cors": "^2.8.4",
+    "firebase-admin": "~5.12.1",
+    "firebase-functions": "^1.0.3",
+    "uuid-v4": "^0.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.12.0",
+    "eslint-plugin-promise": "^3.6.0"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[debug] [2018-07-04T14:54:17.148Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/react-native-myt-1530315514387?view=CONSUMER_VIEW  
+  
+ Wed Jul 04 2018 07:54:17 GMT-0700 (PDT)
+[debug] [2018-07-04T14:54:17.149Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/react-native-myt-1530315514387?view=CONSUMER_VIEW  
+  
+ Wed Jul 04 2018 07:54:17 GMT-0700 (PDT)
+[debug] [2018-07-04T14:54:18.199Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-04T14:54:18.223Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: all necessary APIs are enabled
+[debug] [2018-07-04T14:54:18.225Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/react-native-myt-1530315514387  
+  
+ Wed Jul 04 2018 07:54:18 GMT-0700 (PDT)
+[debug] [2018-07-04T14:54:18.536Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-04T14:54:18.537Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/786257282987:getServerAppConfig  
+  
+ Wed Jul 04 2018 07:54:18 GMT-0700 (PDT)
+[debug] [2018-07-04T14:54:18.942Z] <<< HTTP RESPONSE 200
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2018-07-04T14:54:18.944Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/react-native-myt-1530315514387/configs  
+  
+ Wed Jul 04 2018 07:54:18 GMT-0700 (PDT)
+[debug] [2018-07-04T14:54:19.207Z] <<< HTTP RESPONSE 200
+[info] i  functions: packaged functions (51.97 KB) for uploading
+[debug] [2018-07-04T14:54:20.139Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/react-native-myt-1530315514387/locations/us-central1/functions:generateUploadUrl  
+  
+ Wed Jul 04 2018 07:54:20 GMT-0700 (PDT)
+[debug] [2018-07-04T14:54:20.679Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-04T14:54:20.681Z] >>> HTTP REQUEST PUT https://storage.googleapis.com/gcf-upload-us-central1-a98eb06b-4758-43c7-8e16-e1c1de324554/f3fa0e8e-4ed8-4f30-bb39-417891606ac3.zip?GoogleAccessId=service-786257282987@gcf-admin-robot.iam.gserviceaccount.com&Expires=1530717860&Signature=YZ3xOn1SZvRrd2hqysiPk9nVumz07OCyu4a3qm2van93Ivmvvbxxqp3O7Gu1%2FGqU%2BQ9y3jqWpd64TEfdBNVoZTT3gaI0CghpXANiXGD9gY%2BDUazTghUFVfyIelcwBsi6DmmdkIobxIcTJc7GX5fIuTKOzw7fZZtxdaV27eursF25CZWtW0ZXj84%2BJlShRdfMdElQWXPNVkmocZcSzEjiNhTGL9tX4AY%2FcGt9rSXVz%2FPqDB45m20bLxV8rxhTOSt8mGjbc2dCzMIBR5w%2FxjDG4es%2FoGRC%2BqPYIMQJ1gyIYd11ePTvw4FvmrW6dcDvp8VP9rG3pxamlP%2FV%2Fnp5J2sCuA%3D%3D  
+ ReadStream {
+  _readableState: 
+   ReadableState {
+     objectMode: false,
+     highWaterMark: 65536,
+     buffer: BufferList { head: [Object], tail: [Object], length: 1 },
+     length: 53218,
+     pipes: null,
+     pipesCount: 0,
+     flowing: null,
+     ended: true,
+     endEmitted: false,
+     reading: false,
+     sync: false,
+     needReadable: false,
+     emittedReadable: true,
+     readableListening: false,
+     resumeScheduled: false,
+     defaultEncoding: 'utf8',
+     ranOut: false,
+     awaitDrain: 0,
+     readingMore: false,
+     decoder: null,
+     encoding: null },
+  readable: true,
+  domain: null,
+  _events: { end: [Function] },
+  _eventsCount: 1,
+  _maxListeners: undefined,
+  path: '/var/folders/rb/b9p0xrdd2m1f1qc72lhxlpjm0000gn/T/firebase-functions-3926YVBy5Uuyp9vI.zip',
+  fd: 19,
+  flags: 'r',
+  mode: 438,
+  start: undefined,
+  end: undefined,
+  autoClose: true,
+  pos: undefined,
+  bytesRead: 53218 } 
+ Wed Jul 04 2018 07:54:20 GMT-0700 (PDT)
+[debug] [2018-07-04T14:54:21.474Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: functions folder uploaded successfully
+[debug] [2018-07-04T14:54:21.478Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/projects/react-native-myt-1530315514387/locations/us-central1/functions  
+  
+ Wed Jul 04 2018 07:54:21 GMT-0700 (PDT)
+[debug] [2018-07-04T14:54:22.087Z] <<< HTTP RESPONSE 200
+[info] i  functions: updating function storeImage...
+[debug] [2018-07-04T14:54:22.093Z] Trigger is:  {"httpsTrigger":{}}
+[debug] [2018-07-04T14:54:22.096Z] >>> HTTP REQUEST PATCH https://cloudfunctions.googleapis.com/v1/projects/react-native-myt-1530315514387/locations/us-central1/functions/storeImage 
+query params: {"updateMask":"sourceUploadUrl,name,labels,httpsTrigger"} 
+ { sourceUploadUrl: 'https://storage.googleapis.com/gcf-upload-us-central1-a98eb06b-4758-43c7-8e16-e1c1de324554/f3fa0e8e-4ed8-4f30-bb39-417891606ac3.zip?GoogleAccessId=service-786257282987@gcf-admin-robot.iam.gserviceaccount.com&Expires=1530717860&Signature=YZ3xOn1SZvRrd2hqysiPk9nVumz07OCyu4a3qm2van93Ivmvvbxxqp3O7Gu1%2FGqU%2BQ9y3jqWpd64TEfdBNVoZTT3gaI0CghpXANiXGD9gY%2BDUazTghUFVfyIelcwBsi6DmmdkIobxIcTJc7GX5fIuTKOzw7fZZtxdaV27eursF25CZWtW0ZXj84%2BJlShRdfMdElQWXPNVkmocZcSzEjiNhTGL9tX4AY%2FcGt9rSXVz%2FPqDB45m20bLxV8rxhTOSt8mGjbc2dCzMIBR5w%2FxjDG4es%2FoGRC%2BqPYIMQJ1gyIYd11ePTvw4FvmrW6dcDvp8VP9rG3pxamlP%2FV%2Fnp5J2sCuA%3D%3D',
+  name: 'projects/react-native-myt-1530315514387/locations/us-central1/functions/storeImage',
+  labels: { 'deployment-tool': 'cli-firebase' },
+  httpsTrigger: {} } 
+ Wed Jul 04 2018 07:54:22 GMT-0700 (PDT)

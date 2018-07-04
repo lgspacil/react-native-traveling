@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {View, TouchableOpacity, StyleSheet, Text, Animated} from 'react-native';
 import { connect } from 'react-redux';
 import PlaceList from '../../components/PlaceList/PlaceList';
+import { getPlaces } from "../../store/actions/index";
 
 class FindPlaceScreen extends Component{
     //coloring the button in the navbar when clicked
@@ -11,12 +12,18 @@ class FindPlaceScreen extends Component{
 
     state = {
         placeLoaded: false,
-        removeAnim: new Animated.Value(1)
+        removeAnim: new Animated.Value(1),
+        placesAnim: new Animated.Value(0)
     }
     
     constructor(props) {
         super(props);
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
+    }
+
+    componentDidMount() {
+        console.log('loacing component did mount')
+        this.props.onLoadPlaces();
     }
 
     placesSearchHandler = () => {
@@ -27,8 +34,17 @@ class FindPlaceScreen extends Component{
         }).start();
         this.setState({
             placeLoaded: true
-        })
+        });
+        this.placesLoadedHandler();
     }
+
+    placesLoadedHandler = () => {
+        Animated.timing(this.state.placesAnim, {
+          toValue: 1,
+          duration: 500,
+          useNativeDriver: true
+        }).start();
+      };
 
     onNavigatorEvent = event => {
         if(event.type == "NavBarButtonPress"){
@@ -51,20 +67,23 @@ class FindPlaceScreen extends Component{
                 selectedPlace: selPlace
             }
         })
-    }
+    };
+
     render(){
         let content = (
-            <Animated.View style={{
-                opacity: this.state.removeAnim,
-                transform: [
-                    {
-                        scale: this.state.removeAnim.interpolate({
-                            inputRange: [0, 1],
-                            outputRange: [12, 1]
-                        })
-                    }
-                ]
-            }}>
+            <Animated.View 
+                style={{
+                    opacity: this.state.removeAnim,
+                    transform: [
+                        {
+                            scale: this.state.removeAnim.interpolate({
+                                inputRange: [0, 1],
+                                outputRange: [12, 1]
+                            })
+                        }
+                    ]
+                }}
+            >
                 <TouchableOpacity onPress={this.placesSearchHandler}>
                     <View style={styles.searchButton}>
                         <Text style={styles.searchButtonText}>Find Places</Text>
@@ -73,7 +92,18 @@ class FindPlaceScreen extends Component{
             </Animated.View>
         )
         if (this.state.placeLoaded){
-            content = <PlaceList places={this.props.places} onItemSelected={this.itemSelectedHandler}/>
+            content = (
+                <Animated.View
+                    style={{
+                        opacity: this.state.placesAnim
+                    }}
+                >
+                    <PlaceList 
+                        places={this.props.places} 
+                        onItemSelected={this.itemSelectedHandler}
+                    />
+                </Animated.View>
+            );
         }
         return (
             <View style={this.state.placeLoaded ? null : styles.buttonContainer}>
@@ -109,4 +139,10 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, null)(FindPlaceScreen);
+const mapDispatchToProps = dispatch => {
+    return {
+        onLoadPlaces: () => dispatch(getPlaces())
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FindPlaceScreen);
