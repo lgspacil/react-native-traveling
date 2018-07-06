@@ -1,4 +1,4 @@
-import { SET_PLACES } from './actionTypes';
+import { SET_PLACES, REMOVE_PLACE } from './actionTypes';
 import { uiStartLoading, uiStopLoading } from './index';
 
 export const addPlace = (placeName, location, image) => {
@@ -28,15 +28,15 @@ export const addPlace = (placeName, location, image) => {
                     body: JSON.stringify(placeData)
                 })
             })
-            .catch(err => {
-                console.log(err);
-                alert("Something went wrong, please try again")
-                dispatch(uiStopLoading());
-            })
             .then(res => res.json())
             .then(parsedRes => {
                 console.log(parsedRes)
                 dispatch(uiStopLoading())
+            })
+            .catch(err => {
+                console.log(err);
+                alert("Something went wrong, please try again")
+                dispatch(uiStopLoading());
             })
     };
 };
@@ -44,25 +44,24 @@ export const addPlace = (placeName, location, image) => {
 export const getPlaces = () => {
     return dispatch => {
         fetch("https://react-native-myt-1530315514387.firebaseio.com/places.json")
-        .catch(err => {
-            alert("something went wrong, sorry ;/");
-            console.log(err);
-        })
-        .then(res => res.json())
-        .then(parsedRes => {
-            console.log("get places gives you...", parsedRes)
-            const places = [];
-            for (let key in parsedRes) {
-                places.push({
-                    ...parsedRes[key],
-                    image: {
-                        uri: parsedRes[key].image
-                    },
-                    key: key
-                });
-            }
-            dispatch(setPlaces(places));
-        });
+            .then(res => res.json())
+            .then(parsedRes => {
+                const places = [];
+                for (let key in parsedRes) {
+                    places.push({
+                        ...parsedRes[key],
+                        image: {
+                            uri: parsedRes[key].image
+                        },
+                        key: key
+                    });
+                }
+                dispatch(setPlaces(places));
+            })
+            .catch(err => {
+                alert("something went wrong, sorry ;/");
+                console.log(err);
+            });
     };
 };
 
@@ -74,12 +73,29 @@ export const setPlaces = places => {
 }
 
 export const deletePlace = (key) => {
-    return {
-        type: DELETE_PLACE,
-        placeKey: key
-    };
+    return dispatch => {
+        dispatch(removePlace(key));
+        fetch("https://react-native-myt-1530315514387.firebaseio.com/places/" + key + ".json", {
+            method: "DELETE"
+        })
+            .then(res => res.json)
+            .then(parsedRes => {
+                console.log("Done!");
+            })
+            .catch(err => {
+                console.log(err);
+                alert("Something went wrong, please try again")
+            });
+    }
 };
 
+// this will remove the place in our local store
+export const removePlace = (key) => {
+    return {
+        type: REMOVE_PLACE,
+        key: key
+    }
+}
 
 
 

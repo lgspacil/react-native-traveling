@@ -51,12 +51,14 @@ class PlaceDetail extends Component {
         ]}
       >
         <View style={styles.placeDetailContainer}>
+
           <View style={styles.subContainer}>
             <Image
               source={this.props.selectedPlace.image}
               style={styles.placeImage}
             />
           </View>
+
           <View style={styles.subContainer}>
             <MapView
               initialRegion={{
@@ -72,6 +74,7 @@ class PlaceDetail extends Component {
               <MapView.Marker coordinate={this.props.selectedPlace.location} />
             </MapView>
           </View>
+          
         </View>
         <View style={styles.subContainer}>
           <View>

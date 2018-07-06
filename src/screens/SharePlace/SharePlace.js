@@ -54,24 +54,24 @@ class SharePlaceScreen extends Component {
 
     placeAddedHandler = () => {
         this.props.onAddPlace(
-            this.state.controls.placeName.value, 
+            this.state.controls.placeName.value,
             this.state.controls.location.value,
             this.state.controls.image.value)
     }
 
     locationPickedHandler = location => {
         this.setState(prevState => {
-          return {
-            controls: {
-              ...prevState.controls,
-              location: {
-                value: location,
-                valid: true
-              }
-            }
-          };
+            return {
+                controls: {
+                    ...prevState.controls,
+                    location: {
+                        value: location,
+                        valid: true
+                    }
+                }
+            };
         });
-      };
+    };
 
     placeNameChangedHandler = val => {
         this.setState(prevState => {
@@ -101,7 +101,6 @@ class SharePlaceScreen extends Component {
                 }
             }
         })
-
     }
 
     render() {
@@ -109,12 +108,12 @@ class SharePlaceScreen extends Component {
             <Button
                 title="Share the Place!"
                 onPress={this.placeAddedHandler}
-                disabled={!this.state.controls.placeName.valid || 
-                !this.state.controls.location.valid || 
-                !this.state.controls.image.valid}/>
+                disabled={!this.state.controls.placeName.valid ||
+                    !this.state.controls.location.valid ||
+                    !this.state.controls.image.valid} />
         )
 
-        if(this.props.isLoading){
+        if (this.props.isLoading) {
             submitButton = <ActivityIndicator />
         }
         return (
@@ -123,7 +122,7 @@ class SharePlaceScreen extends Component {
                     <MainText>
                         <HeadingText>Share a Place with us!</HeadingText>
                     </MainText>
-                    <PickImage onImagePicked={this.imagePickedHandler}/>
+                    <PickImage onImagePicked={this.imagePickedHandler} />
                     <PickLocation onLocationPick={this.locationPickedHandler} />
                     <PlaceInput
                         placeData={this.state.controls.placeName}

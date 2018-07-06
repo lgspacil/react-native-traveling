@@ -22,7 +22,7 @@ class FindPlaceScreen extends Component{
     }
 
     componentDidMount() {
-        console.log('loacing component did mount')
+        console.log('loading component did mount')
         this.props.onLoadPlaces();
     }
 
@@ -137,6 +137,7 @@ const mapStateToProps = state => {
     return {
         places: state.places.places
     }
+    console.log('can you see the places here?', places)
 }
 
 const mapDispatchToProps = dispatch => {
