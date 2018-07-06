@@ -1,4 +1,4 @@
 //Bundle all exports
 export {addPlace, deletePlace, getPlaces} from './places';
-export { tryAuth } from './auth';
+export { tryAuth, authGetToken, authAutoSignIn } from './auth';
 export {uiStartLoading, uiStopLoading} from './ui'

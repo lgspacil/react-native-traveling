@@ -7,7 +7,7 @@ import backgroundImage from '../../assets/background.jpg';
 import ButtonWithBackground from '../../components/UI/Button/ButtonWithBackground';
 import validate from '../../utility/validation'
 import  { connect } from 'react-redux';
-import { tryAuth } from '../../store/actions/index';
+import { tryAuth, authAutoSignIn } from '../../store/actions/index';
 
 
 class AuthScreen extends Component {
@@ -50,6 +50,11 @@ class AuthScreen extends Component {
                 viewMode: Dimensions.get("window").height > 500 ? "portrait" : "landscape"
             })
         })
+    }
+
+    // will occur when the user kills the app and relaunches it
+    componentDidMount() {
+        this.props.onAutoSignIn();
     }
 
     switchAuthModeHandler = () => {
@@ -248,7 +253,8 @@ const mapStateToProps = state => {
 // able to fire off a function in redux
 const mapDispatchToProps = dispatch => {
     return {
-        onTryAuth: (authData, authMode) => dispatch(tryAuth(authData, authMode))
+        onTryAuth: (authData, authMode) => dispatch(tryAuth(authData, authMode)),
+        onAutoSignIn: () => dispatch(authAutoSignIn())
     }
 };
 

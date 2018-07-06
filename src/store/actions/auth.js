@@ -1,4 +1,5 @@
-import {TRY_AUTH} from './actionTypes'
+import {AsyncStorage} from 'react-native'
+import {TRY_AUTH, AUTH_SET_TOKEN} from './actionTypes'
 import {uiStartLoading, uiStopLoading} from './index';
 import startMainTabs from "../../screens/MainTabs/startMainTab";
 
@@ -29,9 +30,10 @@ export const tryAuth = (authData, authMode) => {
         .then(res => res.json())
         .then(paredRes => {
             dispatch(uiStopLoading());
-            if(paredRes.error){
+            if(!paredRes.idToken){
                 alert(paredRes.error.message)
             } else {
+                dispatch(authStoreToken(paredRes.idToken));
                 // only start the main tabs when we dont have an error
                 startMainTabs();
             }
@@ -39,3 +41,58 @@ export const tryAuth = (authData, authMode) => {
         })
     };
 };
+
+// saving the token to your device for quick login
+export const authStoreToken = token => {
+    return dispatch => {
+        dispatch(authSetToken(token));
+        // first param is key 
+        AsyncStorage.setItem("ap:auth:token", token);
+    }
+};
+
+
+export const authSetToken = token => {
+    return {
+        type: AUTH_SET_TOKEN,
+        token: token
+    }
+}
+
+// this will be acted as a helper function
+export const authGetToken = () => {
+    return (dispatch, getState) => {
+        const token = getState().auth.token;
+        const promise = new Promise((resolve, reject) => {
+            if(!token){
+                // could not find the token so you try to get it from our phone's memory
+                AsyncStorage.getItem("ap:auth:token")
+                    .catch(err => reject())
+                    .then(tokenFromStorage => {
+                        if(!tokenFromStorage){
+                            reject();
+                            return;
+                        }
+                        dispatch(authSetToken(tokenFromStorage));
+                        resolve(tokenFromStorage);
+                    })
+            } else {
+                resolve(token);
+            }
+        })
+        return promise;
+    };
+};
+
+export const authAutoSignIn = () => {
+    return dispatch => {
+        dispatch(authGetToken())
+        .then(token => {
+            startMainTabs();
+        })
+        .catch(err => {
+            console.log("error", err)
+        })
+
+    }
+}
