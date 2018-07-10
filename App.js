@@ -15,10 +15,10 @@ Navigation.registerComponent("awesome-places.AuthScreen", () => AuthScreen, stor
 Navigation.registerComponent("awesome-places.SharePlaceScreen", () => SharePlaceScrren, store, Provider);
 Navigation.registerComponent("awesome-places.FindPlaceScreen", () => FindPlaceScrren, store, Provider);
 Navigation.registerComponent("awesome-places.PlaceDetailScreen", () => PlaceDetailScreen, store, Provider);
-Navigation.registerComponent("awesome-places.SideDrawer", () => SideDrawer);
+Navigation.registerComponent("awesome-places.SideDrawer", () => SideDrawer, store, Provider);
 
 // Start a App
-Navigation.startSingleScreenApp({
+export default () => Navigation.startSingleScreenApp({
   screen: {
     screen: "awesome-places.AuthScreen",
     title: "Login"
