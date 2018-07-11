@@ -12,7 +12,7 @@ class FindPlaceScreen extends Component{
 
     state = {
         placeLoaded: false,
-        removeAnim: new Animated.Value(1),
+        removeButton: new Animated.Value(1),
         placesAnim: new Animated.Value(0)
     }
     
@@ -22,7 +22,9 @@ class FindPlaceScreen extends Component{
     }
 
     placesSearchHandler = () => {
-        Animated.timing(this.state.removeAnim, {
+        // play annimation with timing over a period of time
+        // pass the value react should start with automatically
+        Animated.timing(this.state.removeButton, {
             toValue: 0,
             duration: 500,
             useNativeDriver: true
@@ -74,15 +76,7 @@ class FindPlaceScreen extends Component{
         let content = (
             <Animated.View 
                 style={{
-                    opacity: this.state.removeAnim,
-                    transform: [
-                        {
-                            scale: this.state.removeAnim.interpolate({
-                                inputRange: [0, 1],
-                                outputRange: [12, 1]
-                            })
-                        }
-                    ]
+                    opacity: this.state.removeButton
                 }}
             >
                 <TouchableOpacity onPress={this.placesSearchHandler}>

@@ -7,7 +7,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   Platform,
-  Dimensions
+  Dimensions,
+  ScrollView
 } from "react-native";
 import { connect } from "react-redux";
 import MapView from "react-native-maps";
@@ -22,18 +23,7 @@ class PlaceDetail extends Component {
 
   constructor(props) {
     super(props);
-    Dimensions.addEventListener("change", this.updateStyles);
   }
-
-  componentWillUnmount() {
-    Dimensions.removeEventListener("change", this.updateStyles);
-  }
-
-  updateStyles = dims => {
-    this.setState({
-      viewMode: dims.window.height > 500 ? "portrait" : "landscape"
-    });
-  };
 
   placeDeletedHandler = () => {
     this.props.onDeletePlace(this.props.selectedPlace.key);
@@ -42,24 +32,17 @@ class PlaceDetail extends Component {
 
   render() {
     return (
-      <View
-        style={[
-          styles.container,
-          this.state.viewMode === "portrait"
-            ? styles.portraitContainer
-            : styles.landscapeContainer
-        ]}
-      >
-        <View style={styles.placeDetailContainer}>
 
-          <View style={styles.subContainer}>
+      <ScrollView>
+        <View style={styles.container}>
+          <View style={styles.pictureContainer}>
             <Image
               source={this.props.selectedPlace.image}
               style={styles.placeImage}
             />
           </View>
 
-          <View style={styles.subContainer}>
+          <View style={styles.mapContiner}>
             <MapView
               initialRegion={{
                 ...this.props.selectedPlace.location,
@@ -74,14 +57,13 @@ class PlaceDetail extends Component {
               <MapView.Marker coordinate={this.props.selectedPlace.location} />
             </MapView>
           </View>
-          
-        </View>
-        <View style={styles.subContainer}>
-          <View>
+
+          <View >
             <Text style={styles.placeName}>
               {this.props.selectedPlace.name}
             </Text>
           </View>
+
           <View>
             <TouchableOpacity onPress={this.placeDeletedHandler}>
               <View style={styles.deleteButton}>
@@ -93,8 +75,10 @@ class PlaceDetail extends Component {
               </View>
             </TouchableOpacity>
           </View>
+
         </View>
-      </View>
+      </ScrollView>
+
     );
   }
 }
@@ -102,16 +86,7 @@ class PlaceDetail extends Component {
 const styles = StyleSheet.create({
   container: {
     margin: 22,
-    flex: 1
-  },
-  portraitContainer: {
-    flexDirection: "column"
-  },
-  landscapeContainer: {
-    flexDirection: "row"
-  },
-  placeDetailContainer: {
-    flex: 2
+    flex: 1,
   },
   placeImage: {
     width: "100%",
@@ -123,13 +98,19 @@ const styles = StyleSheet.create({
     fontSize: 28
   },
   map: {
-    ...StyleSheet.absoluteFillObject
+    flex: 1
   },
   deleteButton: {
     alignItems: "center"
   },
-  subContainer: {
-    flex: 1
+  pictureContainer: {
+    height: 300,
+    width: '100%',
+    marginBottom: 10
+  },
+  mapContiner: {
+    height: 200,
+    width: '100%'
   }
 });
 
