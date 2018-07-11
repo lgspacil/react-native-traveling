@@ -56,19 +56,22 @@ export const tryAuth = (authData, authMode) => {
 
 export const authStoreToken = (token, expiresIn, refreshToken) => {
   return dispatch => {
+
     dispatch(authSetToken(token));
     const now = new Date();
     const expiryDate = now.getTime() + expiresIn * 1000;
+    dispatch(authSetToken(token, expiryDate));
     AsyncStorage.setItem("ap:auth:token", token);
     AsyncStorage.setItem("ap:auth:expiryDate", expiryDate.toString());
     AsyncStorage.setItem("ap:auth:refreshToken", refreshToken);
   };
 };
 
-export const authSetToken = token => {
+export const authSetToken = (token, expiryDate) => {
   return {
     type: AUTH_SET_TOKEN,
-    token: token
+    token: token,
+    expiryDate: expiryDate
   };
 };
 
@@ -76,7 +79,9 @@ export const authGetToken = () => {
   return (dispatch, getState) => {
     const promise = new Promise((resolve, reject) => {
       const token = getState().auth.token;
-      if (!token) {
+      const expiryDate = getState().auth.expiryDate;
+      // If it cant find a token in redux we check our phone memory storage
+      if (!token || new Date(expiryDate) <= new Date()) {
         let fetchedToken;
         AsyncStorage.getItem("ap:auth:token")
           .catch(err => reject())
@@ -91,6 +96,7 @@ export const authGetToken = () => {
           .then(expiryDate => {
             const parsedExpiryDate = new Date(parseInt(expiryDate));
             const now = new Date();
+            // if the expiry date is in the future then thats okay
             if (parsedExpiryDate > now) {
               dispatch(authSetToken(fetchedToken));
               resolve(fetchedToken);
@@ -104,6 +110,7 @@ export const authGetToken = () => {
       }
     });
     return promise
+    // then try to use your refresh token to restart
       .catch(err => {
         return AsyncStorage.getItem("ap:auth:refreshToken")
           .then(refreshToken => {

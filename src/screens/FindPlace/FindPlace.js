@@ -21,11 +21,6 @@ class FindPlaceScreen extends Component{
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
     }
 
-    componentDidMount() {
-        console.log('loading component did mount')
-        this.props.onLoadPlaces();
-    }
-
     placesSearchHandler = () => {
         Animated.timing(this.state.removeAnim, {
             toValue: 0,
@@ -47,6 +42,12 @@ class FindPlaceScreen extends Component{
       };
 
     onNavigatorEvent = event => {
+        // load this when you enter the screen again even if you have visited before
+        if (event.type === "ScreenChangedEvent") {
+            if(event.id === "willAppear") {
+                this.props.onLoadPlaces();
+            }
+        }
         if(event.type == "NavBarButtonPress"){
             if(event.id == "sideDrawerToggle"){
                 this.props.navigator.toggleDrawer({
