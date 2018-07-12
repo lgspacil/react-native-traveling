@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Jul 11 09:40:20 PDT 2018
+#Wed Jul 11 18:45:43 PDT 2018
 17.baseType=DIRECTORY
 4.path=lib/x86/libreactnativejni.so
 25.base=/Users/lucasspacil/Desktop/rn-course/android/app/build/intermediates/transforms/mergeJniLibs/release/0
