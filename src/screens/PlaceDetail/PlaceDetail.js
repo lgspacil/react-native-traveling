@@ -23,7 +23,18 @@ class PlaceDetail extends Component {
 
   constructor(props) {
     super(props);
+    Dimensions.addEventListener("change", this.updateStyles);
   }
+
+  componentWillUnmount() {
+    Dimensions.removeEventListener("change", this.updateStyles);
+  }
+
+  updateStyles = dims => {
+    this.setState({
+      viewMode: dims.window.height > 500 ? "portrait" : "landscape"
+    });
+  };
 
   placeDeletedHandler = () => {
     this.props.onDeletePlace(this.props.selectedPlace.key);
@@ -32,7 +43,6 @@ class PlaceDetail extends Component {
 
   render() {
     return (
-
       <ScrollView>
         <View style={styles.container}>
           <View style={styles.pictureContainer}>
@@ -78,7 +88,6 @@ class PlaceDetail extends Component {
 
         </View>
       </ScrollView>
-
     );
   }
 }

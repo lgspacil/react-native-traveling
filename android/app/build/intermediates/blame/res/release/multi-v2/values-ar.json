@@ -4,7 +4,7 @@
             "outputFile": "/Users/lucasspacil/Desktop/rn-course/android/app/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-ar/values-ar.xml",
             "map": [
                 {
-                    "source": "/Users/lucasspacil/.gradle/caches/transforms-1/files-1.1/play-services-base-10.0.1.aar/b2abbc84c6ae29d9f6930a4ce7cd5ab2/res/values-ar/values.xml",
+                    "source": "/Users/lucasspacil/.gradle/caches/transforms-1/files-1.1/play-services-base-10.0.1.aar/f52c0deb7e865bcde7f8e7c2ec8113a0/res/values-ar/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "/Users/lucasspacil/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/caa4e41b5ecf5708cf41b8a1bdc06efa/res/values-ar/values-ar.xml",
+                    "source": "/Users/lucasspacil/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/ba12fad976b1187c04844be22189b549/res/values-ar/values-ar.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -38,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "/Users/lucasspacil/.gradle/caches/transforms-1/files-1.1/play-services-basement-10.0.1.aar/96f64d71178aeddcf4042dde06005764/res/values-ar/values.xml",
+                    "source": "/Users/lucasspacil/.gradle/caches/transforms-1/files-1.1/play-services-basement-10.0.1.aar/3607cf3713b43a9707f68f65a01a7645/res/values-ar/values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",

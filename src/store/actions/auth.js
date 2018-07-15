@@ -2,7 +2,7 @@ import { AsyncStorage } from "react-native";
 
 import { TRY_AUTH, AUTH_SET_TOKEN, AUTH_REMOVE_TOKEN } from "./actionTypes";
 import { uiStartLoading, uiStopLoading } from "./index";
-import startMainTabs from "../../screens/MainTabs/startMainTab";
+import startMainTabs from "../../screens/MainTabs/startMainTabs";
 import App from "../../../App";
 
 const API_KEY = "AIzaSyBDgdcyCHrbsEyS5p0rM1hYVe656e1g8y4";
@@ -56,8 +56,6 @@ export const tryAuth = (authData, authMode) => {
 
 export const authStoreToken = (token, expiresIn, refreshToken) => {
   return dispatch => {
-
-    dispatch(authSetToken(token));
     const now = new Date();
     const expiryDate = now.getTime() + expiresIn * 1000;
     dispatch(authSetToken(token, expiryDate));
@@ -80,7 +78,6 @@ export const authGetToken = () => {
     const promise = new Promise((resolve, reject) => {
       const token = getState().auth.token;
       const expiryDate = getState().auth.expiryDate;
-      // If it cant find a token in redux we check our phone memory storage
       if (!token || new Date(expiryDate) <= new Date()) {
         let fetchedToken;
         AsyncStorage.getItem("ap:auth:token")
@@ -96,7 +93,6 @@ export const authGetToken = () => {
           .then(expiryDate => {
             const parsedExpiryDate = new Date(parseInt(expiryDate));
             const now = new Date();
-            // if the expiry date is in the future then thats okay
             if (parsedExpiryDate > now) {
               dispatch(authSetToken(fetchedToken));
               resolve(fetchedToken);
@@ -110,7 +106,6 @@ export const authGetToken = () => {
       }
     });
     return promise
-    // then try to use your refresh token to restart
       .catch(err => {
         return AsyncStorage.getItem("ap:auth:refreshToken")
           .then(refreshToken => {
@@ -172,13 +167,12 @@ export const authClearStorage = () => {
 
 export const authLogout = () => {
   return dispatch => {
-    dispatch(authClearStorage())
-      .then(() => {
-        App();
-      })
+    dispatch(authClearStorage()).then(() => {
+      App();
+    });
     dispatch(authRemoveToken());
-  }
-}
+  };
+};
 
 export const authRemoveToken = () => {
   return {
