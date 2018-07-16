@@ -12,7 +12,7 @@ export const startAddPlace = () => {
   };
 };
 
-export const addPlace = (placeName, location, image) => {
+export const addPlace = (placeName, location, image, description) => {
   return dispatch => {
     let authToken;
     dispatch(uiStartLoading());
@@ -51,6 +51,7 @@ export const addPlace = (placeName, location, image) => {
         const placeData = {
           name: placeName,
           location: location,
+          description: description,
           image: parsedRes.imageUrl,
           imagePath: parsedRes.imagePath
         };

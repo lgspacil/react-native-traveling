@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
       borderWidth: 1,
       borderColor: "black",
       backgroundColor: "#eee",
-      width: "80%",
-      height: 150
+      width: "90%",
+      height: 200
     },
     button: {
       margin: 8

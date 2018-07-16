@@ -75,6 +75,12 @@ class PlaceDetail extends Component {
           </View>
 
           <View>
+            <Text>
+              {this.props.selectedPlace.description}
+            </Text>
+          </View>
+
+          <View>
             <TouchableOpacity onPress={this.placeDeletedHandler}>
               <View style={styles.deleteButton}>
                 <Icon

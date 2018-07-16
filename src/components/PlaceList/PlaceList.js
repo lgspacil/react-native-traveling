@@ -12,6 +12,7 @@ const placeList = props => {
         <ListItem
           placeName={info.item.name}
           placeImage={info.item.image}
+          // calling a function automatically
           onItemPressed={() => props.onItemSelected(info.item.key)}
         />
       )}
