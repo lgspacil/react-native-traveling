@@ -11,14 +11,16 @@ import {
   ScrollView
 } from "react-native";
 import { connect } from "react-redux";
-import MapView from "react-native-maps";
-
+import ImageGallery from "../../components/ImageGallery/ImageGallery";
+import MapModal from "../../components/MapModal/MapModal";
 import Icon from "react-native-vector-icons/Ionicons";
 import { deletePlace } from "../../store/actions/index";
 
 class PlaceDetail extends Component {
   state = {
-    viewMode: "portrait"
+    viewMode: "portrait",
+    modal: false,
+    imageView: false
   };
 
   constructor(props) {
@@ -41,32 +43,39 @@ class PlaceDetail extends Component {
     this.props.navigator.pop();
   };
 
+  mapModalHandler = () => {
+    this.setState(prevState => {
+      return {
+        modal: prevState.modal ? false : true
+      };
+    });
+  }
+
+  imageModalHandler = () => {
+    this.setState(prevState => {
+      return {
+        imageView: prevState.imageView ? false : true
+      };
+    });
+  };
+
   render() {
     return (
       <ScrollView>
         <View style={styles.container}>
+        <TouchableOpacity onPress={this.imageModalHandler}>
           <View style={styles.pictureContainer}>
             <Image
               source={this.props.selectedPlace.image}
               style={styles.placeImage}
             />
           </View>
+        </TouchableOpacity>
 
-          <View style={styles.mapContiner}>
-            <MapView
-              initialRegion={{
-                ...this.props.selectedPlace.location,
-                latitudeDelta: 0.0122,
-                longitudeDelta:
-                  Dimensions.get("window").width /
-                  Dimensions.get("window").height *
-                  0.0122
-              }}
-              style={styles.map}
-            >
-              <MapView.Marker coordinate={this.props.selectedPlace.location} />
-            </MapView>
-          </View>
+          <ImageGallery openViewModal={this.state.imageView} onViewModalClosed={this.imageModalHandler} imageData={this.props.selectedPlace.image}/>
+
+            <Button title="View Location on Google Maps" onPress={this.modalHandler}/>
+            <MapModal mapInfo={this.props.selectedPlace.location} openMapModal={this.state.modal} onModalClosed={this.mapModalHandler}/>        
 
           <View >
             <Text style={styles.placeName}>
@@ -136,3 +145,20 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(null, mapDispatchToProps)(PlaceDetail);
+
+
+{/* <View style={styles.mapContiner}>
+            <MapView
+              initialRegion={{
+                ...this.props.selectedPlace.location,
+                latitudeDelta: 0.0122,
+                longitudeDelta:
+                  Dimensions.get("window").width /
+                  Dimensions.get("window").height *
+                  0.0122
+              }}
+              style={styles.map}
+            >
+              <MapView.Marker coordinate={this.props.selectedPlace.location} />
+            </MapView>
+          </View> */}

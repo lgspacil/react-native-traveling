@@ -9,6 +9,7 @@ import {
 import { connect } from "react-redux";
 
 import PlaceList from "../../components/PlaceList/PlaceList";
+import PlaceCard from "../../components/PlaceCard/PlaceCard";
 import { getPlaces } from "../../store/actions/index";
 
 class FindPlaceScreen extends Component {
@@ -17,6 +18,7 @@ class FindPlaceScreen extends Component {
   };
 
   state = {
+    viewType: "card",
     placesLoaded: false,
     removeAnim: new Animated.Value(1),
     placesAnim: new Animated.Value(0)
@@ -41,6 +43,17 @@ class FindPlaceScreen extends Component {
         this.props.navigator.toggleDrawer({
           side: "left"
         });
+      } else if(event.id === "rightButtonCardView") {
+        if(this.state.viewType === "list"){
+          this.setState({
+            viewType: "card"
+          })
+        } else {
+          this.setState({
+            viewType: "list"
+          })
+        }
+
       }
     }
   };
@@ -101,7 +114,7 @@ class FindPlaceScreen extends Component {
         </TouchableOpacity>
       </Animated.View>
     );
-    if (this.state.placesLoaded) {
+    if (this.state.placesLoaded && this.state.viewType === "list") {
       content = (
         <Animated.View
           style={{
@@ -109,6 +122,19 @@ class FindPlaceScreen extends Component {
           }}
         >
           <PlaceList
+            places={this.props.places}
+            onItemSelected={this.itemSelectedHandler}
+          />
+        </Animated.View>
+      );
+    } else if (this.state.placesLoaded && this.state.viewType === "card"){
+      content = (
+        <Animated.View
+          style={{
+            opacity: this.state.placesAnim
+          }}
+        >
+          <PlaceCard
             places={this.props.places}
             onItemSelected={this.itemSelectedHandler}
           />

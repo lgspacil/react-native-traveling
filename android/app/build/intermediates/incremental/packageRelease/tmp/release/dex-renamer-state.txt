@@ -1,4 +1,4 @@
-#Sat Jul 14 22:13:55 PDT 2018
+#Sun Jul 15 17:47:56 PDT 2018
 base.0=/Users/lucasspacil/Desktop/rn-course/android/app/build/intermediates/transforms/dexMerger/release/0
 path.0=classes.dex
 renamed.0=classes.dex
