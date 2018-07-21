@@ -6,7 +6,7 @@ import MapView from "react-native-maps";
 const mapModal = props => (
     <Modal onRequestClose={props.onModalClosed} visible={props.openMapModal} animationType="slide">
         <View>
-            <Button title="Close" onPress={props.onModalClosed}/>
+            <Button title="Close" onPress={props.onModalClosed} color="#4064935e"/>
             <View style={styles.mapContiner}>
                 <MapView
                     initialRegion={{

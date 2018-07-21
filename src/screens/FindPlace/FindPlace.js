@@ -18,7 +18,7 @@ class FindPlaceScreen extends Component {
   };
 
   state = {
-    viewType: "card",
+    viewType: "list",
     placesLoaded: false,
     removeAnim: new Animated.Value(1),
     placesAnim: new Animated.Value(0)
@@ -33,9 +33,6 @@ class FindPlaceScreen extends Component {
     if (event.type === "ScreenChangedEvent") {
       if (event.id === "willAppear") {
         this.props.onLoadPlaces();
-        // this.setState({
-        //   placesLoaded: false
-        // });
       }
     }
     if (event.type === "NavBarButtonPress") {

@@ -74,7 +74,7 @@ class PlaceDetail extends Component {
 
           <ImageGallery openViewModal={this.state.imageView} onViewModalClosed={this.imageModalHandler} imageData={this.props.selectedPlace.image}/>
 
-            <Button title="View Location on Google Maps" onPress={this.modalHandler}/>
+            <Button title="View Location on Google Maps" onPress={this.mapModalHandler}/>
             <MapModal mapInfo={this.props.selectedPlace.location} openMapModal={this.state.modal} onModalClosed={this.mapModalHandler}/>        
 
           <View >
